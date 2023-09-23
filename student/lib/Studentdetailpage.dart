@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:student/models/student.dart';
 
 import 'package:flutter/material.dart';
 
 class StudentDetailPage extends StatelessWidget {
   final Student student;
+  
 
   StudentDetailPage({required this.student});
 
@@ -11,6 +14,7 @@ class StudentDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         backgroundColor: Color.fromARGB(255, 180, 49, 255),
         title: Text('Student Details'),
       ),
@@ -29,8 +33,14 @@ class StudentDetailPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    radius: 100.0,
-                    backgroundColor: const Color.fromARGB(255, 143, 87, 87),
+                    radius: 30.8,
+                    backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                    backgroundImage: student.image != null
+                        ? FileImage(File(student.image))
+                        : null,
+                    child: student.image == null
+                        ? Icon(Icons.image, size: 30)
+                        : null,
                   ),
                   SizedBox(height: 20),
                   Text('Name: ${student.name}'),

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:student/searchfunction.dart';
 import 'package:flutter/material.dart';
-import 'AddStudent.dart';
+import 'addStudent.dart';
 import 'Studentdetailpage.dart';
 import 'db/data.dart';
 import 'editstudent.dart';
@@ -16,6 +16,13 @@ class _HomePageState extends State<HomePage> {
   final StudentRepository studentRepository = StudentRepository();
   List<Student> students = [];
   String searchQuery = '';
+
+  // Function to refresh the home screen
+  Future<void> refreshHomeScreen() async {
+    setState(() {
+      students = studentRepository.getAllStudent();
+    });
+  }
 
   @override
   void initState() {
@@ -41,10 +48,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final List<Student> filteredStudents = filterStudents();
 
+    refreshHomeScreen();
     return Scaffold(
       appBar: AppBar(
-        title: Text("studentKart"),
-        backgroundColor: Color.fromARGB(255, 151, 60, 255),
+        centerTitle: true,
+        title: Text("Student Datas"),
+        actionsIconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.purpleAccent,
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -58,6 +68,13 @@ class _HomePageState extends State<HomePage> {
               }
             },
           ),
+          IconButton(
+            icon: Icon(Icons.refresh), // Refresh icon
+            onPressed: () {
+              // Trigger the refresh here
+              refreshHomeScreen();
+            },
+          ),
         ],
       ),
       body: ListView.builder(
@@ -69,71 +86,83 @@ class _HomePageState extends State<HomePage> {
             height: 70,
             child: Card(
               elevation: 10,
-              color: Color.fromARGB(255, 153, 74, 255),
+              color: Color.fromARGB(255, 242, 255, 0),
               child: ListTile(
-                leading: CircleAvatar(
-                  radius: 30.8,
-                  backgroundColor: Color.fromARGB(255, 0, 0, 0),
-                  backgroundImage: student.image != null
-                      ? FileImage(File(student.image))
-                      : null,
-                  child: student.image == null
-                      ? Icon(Icons.image, size: 30)
-                      : null,
+                leading: Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: CircleAvatar(
+                    radius: 30.8,
+                    backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                    backgroundImage: student.image != null
+                        ? FileImage(File(student.image))
+                        : null,
+                    child: student.image == null
+                        ? Icon(Icons.image, size: 30)
+                        : null,
+                  ),
                 ),
-                title: Text(student.name),
+                title: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(student.name),
+                ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(
-                      color: Colors.black,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  EditStudentPage(student: student)),
-                        );
-                      },
-                      icon: Icon(Icons.edit),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: IconButton(
+                        color: Colors.black,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    EditStudentPage(student: student)),
+                          );
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
                     ),
-                    IconButton(
-                      color: Colors.black,
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              backgroundColor:
-                                  Color.fromARGB(255, 202, 174, 255),
-                              title: Text('Confirm Deletion'),
-                              content: Text(
-                                  'Are you sure you want to delete this student?'),
-                              elevation: 25,
-                              shadowColor: Color.fromARGB(255, 255, 0, 0),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    int studentIndex =
-                                        students.indexOf(student);
-                                    studentRepository
-                                        .deleteStudent(studentIndex);
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Delete'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: Icon(Icons.delete),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: IconButton(
+                        color: Colors.black,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor:
+                                    Color.fromARGB(255, 202, 174, 255),
+                                title: Text('Confirm Deletion'),
+                                content: Text(
+                                    'Are you sure you want to delete this student?'),
+                                elevation: 25,
+                                shadowColor: Color.fromARGB(255, 255, 0, 0),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      int studentIndex =
+                                          students.indexOf(student);
+                                      studentRepository
+                                          .deleteStudent(studentIndex);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Delete'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
                     ),
                   ],
                 ),
@@ -151,16 +180,19 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 157, 68, 240),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => Addstudent()),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+        ),
+        tooltip: 'add student',
       ),
-      backgroundColor: Color.fromARGB(255, 210, 194, 239),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
     );
   }
 }

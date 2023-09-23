@@ -20,7 +20,7 @@ class StudentRepository {
     }
   }
 
-  void deleteStudent(int index) {
+  Future<void> deleteStudent(int index) async {
     _studentBox.deleteAt(index);
   }
 }

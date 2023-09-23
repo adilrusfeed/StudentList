@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:student/models/student.dart';
 import 'package:student/db/data.dart';
@@ -47,7 +49,7 @@ class EditStudentForm extends StatelessWidget {
           ),
           TextField(
             decoration: InputDecoration(
-              labelText: 'Birthday',
+              labelText: 'Date Of Birth',
             ),
             // initialValue: student.birth,
           ),
