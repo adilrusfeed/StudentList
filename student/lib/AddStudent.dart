@@ -40,25 +40,25 @@ class _AddstudentState extends State<Addstudent> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Add any action you want here
-            },
-            icon: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       // Add any action you want here
+        //     },
+        //     icon: Icon(
+        //       Icons.add,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ],
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(

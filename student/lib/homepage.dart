@@ -133,12 +133,10 @@ class _HomePageState extends State<HomePage> {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 backgroundColor:
-                                    Color.fromARGB(255, 202, 174, 255),
-                                title: Text('Confirm Deletion'),
+                                    Color.fromARGB(255, 255, 255, 255),
+                                title: Text('Confirm Deletion!'),
                                 content: Text(
                                     'Are you sure you want to delete this student?'),
-                                elevation: 25,
-                                shadowColor: Color.fromARGB(255, 255, 0, 0),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
