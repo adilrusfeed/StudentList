@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actionsIconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Color.fromARGB(255, 162, 255, 0),
+        backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
           return Container(
             height: 70,
             child: Card(
-              elevation: 10,
+              elevation: 50,
               color: Color.fromARGB(255, 242, 255, 0),
               child: ListTile(
                 leading: Padding(
