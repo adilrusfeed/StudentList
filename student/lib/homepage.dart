@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:io';
 import 'package:student/searchfunction.dart';
 import 'package:flutter/material.dart';
-import 'addStudent.dart';
+import 'addstudent.dart';
 import 'Studentdetailpage.dart';
 import 'db/data.dart';
 import 'editstudent.dart';
@@ -49,12 +51,16 @@ class _HomePageState extends State<HomePage> {
     final List<Student> filteredStudents = filterStudents();
 
     refreshHomeScreen();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Student Datas"),
+        title: Text(
+          "Student Data",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actionsIconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.purpleAccent,
+        backgroundColor: Color.fromARGB(255, 162, 255, 0),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -177,20 +183,25 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Addstudent()),
-          );
-        },
-        child: Icon(
-          Icons.add,
+      floatingActionButton: SizedBox(
+        width: 180,
+        child: FloatingActionButton.extended(
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Addstudent()),
+            );
+          },
+          label: Text(
+            "Add Student",
+            style: TextStyle(fontSize: 14),
+          ),
+          icon: Icon(Icons.add),
+          tooltip: 'Add Student',
+          splashColor: Colors.amber,
         ),
-        tooltip: 'add student',
       ),
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
     );
   }
 }
