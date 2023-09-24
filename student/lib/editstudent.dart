@@ -15,82 +15,89 @@ class EditStudentPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Student'),
-        backgroundColor: const Color.fromARGB(255, 152, 54, 244),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
       ),
       body: EditStudentForm(student: student),
-      backgroundColor: Color.fromARGB(255, 218, 185, 248),
+      backgroundColor: Color.fromARGB(255, 195, 195, 195),
     );
   }
 }
 
-class EditStudentForm extends StatelessWidget {
+class EditStudentForm extends StatefulWidget {
   final Student student;
 
   EditStudentForm({required this.student});
 
   @override
+  _EditStudentFormState createState() => _EditStudentFormState();
+}
+
+class _EditStudentFormState extends State<EditStudentForm> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController classController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.student.name;
+    classController.text = widget.student.classs;
+    dobController.text = widget.student.birth;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
-      // Center the entire form
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.center, // Align items vertically at the center
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Edit Name field with an Icon
             TextFormField(
-              initialValue: student.name,
+              controller: nameController,
               decoration: InputDecoration(
                 labelText: 'Name',
-                prefixIcon: Icon(Icons.person), // Customize the icon here
+                prefixIcon: Icon(Icons.person),
               ),
             ),
-
-            // Edit Class field with an Icon
             TextFormField(
-              initialValue: student.classs,
+              controller: classController,
               decoration: InputDecoration(
                 labelText: 'Class',
-                prefixIcon: Icon(Icons.school), // Customize the icon here
+                prefixIcon: Icon(Icons.school),
               ),
             ),
-
-            // Edit Date Of Birth field with an Icon
             TextFormField(
-              initialValue: student.birth,
+              controller: dobController,
               decoration: InputDecoration(
                 labelText: 'Date Of Birth',
-                prefixIcon:
-                    Icon(Icons.calendar_today), // Customize the icon here
+                prefixIcon: Icon(Icons.calendar_today),
               ),
             ),
-
             SizedBox(height: 22),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 92, 15, 146), // Background color
+                primary: Color.fromARGB(255, 0, 0, 0),
                 textStyle: TextStyle(
-                  fontSize: 18, // Text size
-                  fontWeight: FontWeight.bold, // Text weight
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16), // Button padding
+                padding: EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(30.0), // Circular border radius
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
               onPressed: () {
                 final updatedStudent = Student(
-                  image: student.image,
-                  name: student.name,
-                  classs: student.classs,
-                  birth: student.birth,
+                  image: widget.student.image,
+                  name: nameController.text,
+                  classs: classController.text,
+                  birth: dobController.text,
                 );
 
-                // Update the student in Hive
-                StudentRepository().updateStudent(updatedStudent);
+                StudentRepository()
+                    .updateStudent(widget.student, updatedStudent);
 
                 Navigator.pushReplacement(
                   context,

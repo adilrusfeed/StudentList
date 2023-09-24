@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actionsIconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -91,8 +91,8 @@ class _HomePageState extends State<HomePage> {
           return Container(
             height: 70,
             child: Card(
-              elevation: 50,
-              color: Color.fromARGB(255, 242, 255, 0),
+              elevation: 10,
+              color: Color.fromARGB(255, 255, 255, 255),
               child: ListTile(
                 leading: Padding(
                   padding: EdgeInsets.only(top: 10),
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: IconButton(
-                        color: Colors.black,
+                        color: Color.fromARGB(255, 0, 0, 0),
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -126,6 +126,7 @@ class _HomePageState extends State<HomePage> {
                                     EditStudentPage(student: student)),
                           );
                         },
+                        tooltip: 'Edit',
                         icon: Icon(Icons.edit),
                       ),
                     ),
@@ -138,17 +139,24 @@ class _HomePageState extends State<HomePage> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                backgroundColor:
-                                    Color.fromARGB(255, 255, 255, 255),
-                                title: Text('Confirm Deletion!'),
+                                backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                                title: Text(
+                                  'Confirm Deletion!',
+                                  style: TextStyle(color: Colors.red),
+                                ),
                                 content: Text(
-                                    'Are you sure you want to delete this student?'),
+                                  'Are you sure you want to delete this student?',
+                                  style: TextStyle(color: Colors.white),
+                                ),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Cancel'),
+                                    child: Text('Cancel',
+                                        style: TextStyle(
+                                            color: const Color.fromARGB(
+                                                255, 255, 255, 255))),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -158,13 +166,15 @@ class _HomePageState extends State<HomePage> {
                                           .deleteStudent(studentIndex);
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Delete'),
+                                    child: Text('Delete',
+                                        style: TextStyle(color: Colors.red)),
                                   ),
                                 ],
                               );
                             },
                           );
                         },
+                        tooltip: 'Delete',
                         icon: Icon(Icons.delete),
                       ),
                     ),
@@ -202,6 +212,7 @@ class _HomePageState extends State<HomePage> {
           splashColor: Colors.amber,
         ),
       ),
+      backgroundColor: Color.fromARGB(255, 255, 191, 0),
     );
   }
 }

@@ -33,7 +33,7 @@ class _AddstudentState extends State<Addstudent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 188, 54, 255),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: Text(
           'Add Student',
           style: TextStyle(
@@ -56,7 +56,7 @@ class _AddstudentState extends State<Addstudent> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(255, 54, 7, 84),
+                      primary: Color.fromARGB(255, 0, 0, 0),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -125,7 +125,7 @@ class _AddstudentState extends State<Addstudent> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a class';
+                        return 'Please enter  class';
                       }
                       return null;
                     },
@@ -159,7 +159,7 @@ class _AddstudentState extends State<Addstudent> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please select a date of birth';
+                            return 'Please select a date';
                           }
                           return null;
                         },
@@ -169,7 +169,7 @@ class _AddstudentState extends State<Addstudent> {
                   SizedBox(height: 16),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 163, 54, 242),
+                      primary: Color.fromARGB(255, 0, 0, 0),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -212,7 +212,7 @@ class _AddstudentState extends State<Addstudent> {
           ),
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 222, 203, 255),
+      backgroundColor: Color.fromARGB(255, 187, 187, 187),
     );
   }
 }
