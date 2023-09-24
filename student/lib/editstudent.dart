@@ -30,54 +30,80 @@ class EditStudentForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Name',
+    return Center(
+      // Center the entire form
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.center, // Align items vertically at the center
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Edit Name field with an Icon
+            TextFormField(
+              initialValue: student.name,
+              decoration: InputDecoration(
+                labelText: 'Name',
+                prefixIcon: Icon(Icons.person), // Customize the icon here
+              ),
             ),
-            // initialValue: student.name,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Class',
-            ),
-            // initialValue: student.classs.,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Date Of Birth',
-            ),
-            // initialValue: student.birth,
-          ),
-          SizedBox(height: 16),
-          MaterialButton(
-            color: Color.fromARGB(255, 92, 15, 146),
-            onPressed: () {
-              final updatedStudent = Student(
-                image: student.image,
-                name: student.name,
-                classs: student.classs,
-                birth: student.birth,
-              );
 
-              // Update the student in Hive
-              StudentRepository().updateStudent(updatedStudent);
+            // Edit Class field with an Icon
+            TextFormField(
+              initialValue: student.classs,
+              decoration: InputDecoration(
+                labelText: 'Class',
+                prefixIcon: Icon(Icons.school), // Customize the icon here
+              ),
+            ),
 
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      StudentDetailPage(student: updatedStudent),
+            // Edit Date Of Birth field with an Icon
+            TextFormField(
+              initialValue: student.birth,
+              decoration: InputDecoration(
+                labelText: 'Date Of Birth',
+                prefixIcon:
+                    Icon(Icons.calendar_today), // Customize the icon here
+              ),
+            ),
+
+            SizedBox(height: 22),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromARGB(255, 92, 15, 146), // Background color
+                textStyle: TextStyle(
+                  fontSize: 18, // Text size
+                  fontWeight: FontWeight.bold, // Text weight
                 ),
-              );
-            },
-            child: Text('Update'),
-          ),
-        ],
+                padding: EdgeInsets.symmetric(vertical: 16), // Button padding
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(30.0), // Circular border radius
+                ),
+              ),
+              onPressed: () {
+                final updatedStudent = Student(
+                  image: student.image,
+                  name: student.name,
+                  classs: student.classs,
+                  birth: student.birth,
+                );
+
+                // Update the student in Hive
+                StudentRepository().updateStudent(updatedStudent);
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        StudentDetailPage(student: updatedStudent),
+                  ),
+                );
+              },
+              child: Text('Update'),
+            ),
+          ],
+        ),
       ),
     );
   }
