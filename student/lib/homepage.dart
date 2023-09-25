@@ -128,6 +128,7 @@ class _HomePageState extends State<HomePage> {
         itemCount: filteredStudents.length,
         itemBuilder: (context, index) {
           final Student student = filteredStudents[index];
+          final StudentNumber = index + 1;
 
           return Container(
             height: 70,
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 title: Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(student.name),
+                  child: Text('$StudentNumber.${student.name}'),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
