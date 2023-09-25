@@ -19,9 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Student App',
-      home: HomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Student App',
+        home: HomePage(),);
   }
 }

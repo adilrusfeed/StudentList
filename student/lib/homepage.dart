@@ -29,9 +29,51 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    students = studentRepository.getAllStudent();
+    refreshHomeScreen(); // Initial load of students
   }
 
+  // Function to delete a student
+  Future<void> deleteStudent(int index) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          title: Text(
+            'Confirm Deletion!',
+            style: TextStyle(color: Colors.red),
+          ),
+          content: Text(
+            'Are you sure you want to delete this student?',
+            style: TextStyle(color: Colors.white),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 255, 255, 255))),
+            ),
+            TextButton(
+              onPressed: () {
+                studentRepository.deleteStudent(index);
+                // Remove the student from the students list
+                setState(() {
+                  students.removeAt(index);
+                });
+                Navigator.pop(context);
+              },
+              child: Text('Delete', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Function to search students
   void searchStudents(String query) {
     setState(() {
       searchQuery = query;
@@ -50,10 +92,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final List<Student> filteredStudents = filterStudents();
 
-    refreshHomeScreen();
-
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           "Student Data",
@@ -135,44 +176,8 @@ class _HomePageState extends State<HomePage> {
                       child: IconButton(
                         color: Colors.black,
                         onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor: Color.fromARGB(255, 0, 0, 0),
-                                title: Text(
-                                  'Confirm Deletion!',
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                                content: Text(
-                                  'Are you sure you want to delete this student?',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Cancel',
-                                        style: TextStyle(
-                                            color: const Color.fromARGB(
-                                                255, 255, 255, 255))),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      int studentIndex =
-                                          students.indexOf(student);
-                                      studentRepository
-                                          .deleteStudent(studentIndex);
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Delete',
-                                        style: TextStyle(color: Colors.red)),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
+                          // Delete the student from the list immediately
+                          deleteStudent(index);
                         },
                         tooltip: 'Delete',
                         icon: Icon(Icons.delete),

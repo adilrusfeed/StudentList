@@ -12,15 +12,17 @@ class StudentRepository {
     _studentBox.add(student);
   }
 
-   void updateStudent(Student originalStudent, Student updatedStudent) {
-    final studentIndex =
-        _studentBox.values.toList().indexWhere((student) => student == originalStudent);
+  void updateStudent(Student originalStudent, Student updatedStudent) {
+    final studentIndex = _studentBox.values
+        .toList()
+        .indexWhere((student) => student == originalStudent);
     if (studentIndex != -1) {
       _studentBox.putAt(studentIndex, updatedStudent);
     }
   }
 
   Future<void> deleteStudent(int index) async {
+    // Delete the student from Hive box
     _studentBox.deleteAt(index);
   }
 }
