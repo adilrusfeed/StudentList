@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:student/searchfunction.dart';
 import 'package:flutter/material.dart';
 import 'addstudent.dart';
-import 'Studentdetailpage.dart';
-import 'db/data.dart';
+import '../Studentdetailpage.dart';
+import '../db/data.dart';
 import 'editstudent.dart';
-import 'models/student.dart';
+import '../models/student.dart';
 
 class HomePage extends StatefulWidget {
   @override

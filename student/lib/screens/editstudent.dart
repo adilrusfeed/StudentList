@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:student/models/student.dart';
 import 'package:student/db/data.dart';
-import 'Studentdetailpage.dart';
+import '../Studentdetailpage.dart';
 
 class EditStudentPage extends StatelessWidget {
   final Student student;
@@ -78,7 +78,7 @@ class _EditStudentFormState extends State<EditStudentForm> {
             SizedBox(height: 22),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 0, 0, 0),
+                backgroundColor: Color.fromARGB(255, 0, 0, 0),
                 textStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

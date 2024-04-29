@@ -1,4 +1,4 @@
-import 'package:student/homepage.dart';
+import 'package:student/screens/homepage.dart';
 import 'package:flutter/material.dart';
 
 import 'models/student.dart';

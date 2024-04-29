@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:student/models/student.dart';
-import 'homepage.dart';
+import 'package:student/screens/homepage.dart';
 
 class StudentDetailPage extends StatelessWidget {
   final Student student;
@@ -64,9 +64,9 @@ class StudentDetailPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary:
-                            Color.fromARGB(255, 0, 0, 0), // Background color
-                        onPrimary: Colors.white, // Text color
+                        foregroundColor: Colors.white,
+                        backgroundColor:
+                            Color.fromARGB(255, 0, 0, 0), // Text color
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(10.0), // Rounded corners

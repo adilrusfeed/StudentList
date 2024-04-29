@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'studentdetailpage.dart';
-import 'db/data.dart';
-import 'models/student.dart';
+import '../db/studentdetailpage.dart';
+import '../db/data.dart';
+import '../models/student.dart';
 import 'dart:io';
 
 class Addstudent extends StatefulWidget {
@@ -56,7 +56,7 @@ class _AddstudentState extends State<Addstudent> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 0, 0, 0),
+                      backgroundColor: Color.fromARGB(255, 0, 0, 0),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -169,7 +169,7 @@ class _AddstudentState extends State<Addstudent> {
                   SizedBox(height: 16),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 0, 0, 0),
+                      backgroundColor: Color.fromARGB(255, 0, 0, 0),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -210,7 +210,7 @@ class _AddstudentState extends State<Addstudent> {
               ),
             ),
           ),
-),                                                              
+        ),
       ),
       backgroundColor: Color.fromARGB(255, 187, 187, 187),
     );
