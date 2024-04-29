@@ -22,7 +22,6 @@ class StudentRepository {
   }
 
   Future<void> deleteStudent(int index) async {
-    // Delete the student from Hive box
     _studentBox.deleteAt(index);
   }
 }

@@ -22,7 +22,7 @@ class StudentDetailPage extends StatelessWidget {
         child: Container(
           height: 350,
           child: Card(
-            color: Colors.black,
+            color: Color.fromARGB(255, 255, 247, 0),
             child: Card(
               color: Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(

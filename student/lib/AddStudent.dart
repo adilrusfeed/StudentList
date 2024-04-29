@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'Studentdetailpage.dart';
+import 'studentdetailpage.dart';
 import 'db/data.dart';
 import 'models/student.dart';
 import 'dart:io';
@@ -210,7 +210,7 @@ class _AddstudentState extends State<Addstudent> {
               ),
             ),
           ),
-        ),
+),                                                              
       ),
       backgroundColor: Color.fromARGB(255, 187, 187, 187),
     );
